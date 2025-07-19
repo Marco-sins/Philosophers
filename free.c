@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/19 19:34:45 by marco             #+#    #+#             */
-/*   Updated: 2025/07/19 21:40:21 by marco            ###   ########.fr       */
+/*   Created: 2025/07/19 20:04:41 by marco             #+#    #+#             */
+/*   Updated: 2025/07/19 21:36:20 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int ac, char **av)
+void    ft_destroy_mutex(t_data *data, int j)
 {
-    t_data  *data;
+    int i;
 
-    if (ac == 5 || ac == 6)
-        return (printf("ERROR\n"), 1);
-    data = ft_init(data, ac, av);
-    if (!data)
-        return (printf("ERROR\n"), 1);
-    go_threads(data);
+    i = 0;
+    while (i < j)
+    {
+        pthread_mutex_destroy(&data->forks[i]);
+        i++;
+    }
+}
+
+void    ft_destroy_threads(t_data *data, int j)
+{
+    int i;
+    
+    i = 0;
+    while (i < j)
+    {
+        pthread_detach(&data->philos[i].thread);
+        i++;
+    }
 }

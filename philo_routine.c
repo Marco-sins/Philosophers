@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/19 19:34:45 by marco             #+#    #+#             */
-/*   Updated: 2025/07/19 21:40:21 by marco            ###   ########.fr       */
+/*   Created: 2025/07/19 21:52:15 by marco             #+#    #+#             */
+/*   Updated: 2025/07/19 21:52:48 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int ac, char **av)
+static void ft_eat(t_data *data)
 {
-    t_data  *data;
-
-    if (ac == 5 || ac == 6)
-        return (printf("ERROR\n"), 1);
-    data = ft_init(data, ac, av);
-    if (!data)
-        return (printf("ERROR\n"), 1);
-    go_threads(data);
+    
 }

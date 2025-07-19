@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 20:25:59 by marco             #+#    #+#             */
-/*   Updated: 2025/07/19 21:57:29 by marco            ###   ########.fr       */
+/*   Updated: 2025/07/20 01:39:05 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_data    *ft_init(t_data *data, int ac, char **av);
 void    ft_destroy_mutex(t_data *data);
 void    ft_destroy_threads(t_data *data, int j);
 void    go_threads(t_data *data);
-void    philo_routine(void *arg);
+void    *philo_routine(void *arg);
 void    monitor();
 
 #endif

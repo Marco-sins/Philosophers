@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 21:02:07 by marco             #+#    #+#             */
-/*   Updated: 2025/07/19 21:39:46 by marco            ###   ########.fr       */
+/*   Updated: 2025/07/20 00:11:34 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ t_data    *ft_init(t_data *data, int ac, char **av)
     if (av[5])
         data->settings.max_meals = atoi(av[5]);
     else
-        data->settings.max_meals = NULL;
+        data->settings.max_meals = -1;
     ft_init_forks(data);
     if (!data->forks)
         return (NULL);

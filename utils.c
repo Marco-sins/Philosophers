@@ -1,0 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/20 12:42:09 by marco             #+#    #+#             */
+/*   Updated: 2025/07/20 17:29:54 by marco            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philo.h"
+
+void    ft_print_action(t_philo *philo, char *action)
+{
+    printf("Philosopher %d, %s\n", philo->id, action);
+}
+
+void    ft_usleep(long time, t_data *data)
+{
+    long start;
+
+    start = ft_get_time();
+    while (ft_stop(data))
+    {
+        if ((ft_get_time() - start) < time)
+            break ;
+        usleep((time * 1000) / 20);
+    }
+}
+
+long    ft_get_time()
+{
+    struct timeval tv;
+
+    gettimeofday(&tv, NULL);
+    return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}

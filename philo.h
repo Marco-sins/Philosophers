@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 20:25:59 by marco             #+#    #+#             */
-/*   Updated: 2025/07/20 01:39:05 by marco            ###   ########.fr       */
+/*   Updated: 2025/07/20 17:30:20 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,8 @@
 # define TRUE 1
 # define FALSE 0
 
-typedef struct s_data
-{
-    t_philo        *philos;
-    t_settings      settings;
-    pthread_mutex_t *forks;
-    pthread_mutex_t print_mutex;
-    pthread_t       checker;
-}    t_data;
-
-typedef struct s_philo
-{
-    int             id;
-    int             meals_eaten;
-    long            last_meal_time;
-    pthread_t       thread;
-    pthread_mutex_t *left_fork;
-    pthread_mutex_t *right_fork;
-}   t_philo;
+typedef struct s_monitor t_monitor;
+typedef struct s_philo t_philo; 
 
 typedef struct s_settings
 {
@@ -50,11 +34,50 @@ typedef struct s_settings
     int             max_meals;
 }   t_settings;
 
-t_data    *ft_init(t_data *data, int ac, char **av);
-void    ft_destroy_mutex(t_data *data);
-void    ft_destroy_threads(t_data *data, int j);
-void    go_threads(t_data *data);
+typedef struct s_data
+{
+    t_philo        *philos;
+    int             philos_created;
+    t_settings      settings;
+    pthread_mutex_t *forks;
+    int             forks_created;
+    pthread_mutex_t print_mutex;
+    int             print_mutex_created;
+    t_monitor       *monitor;
+    pthread_mutex_t meal_check;
+    int             meal_check_created;
+    int             philo_eaten_max;
+}    t_data;
+
+typedef struct s_monitor
+{
+    t_data  *data;
+    int stop;
+    pthread_mutex_t stop_mutex;
+    int mutex_created;
+    pthread_t   thread;
+    int thread_created;
+}   t_monitor;
+
+typedef struct s_philo
+{
+    int             id;
+    int             meals_eaten;
+    long            last_meal_time;
+    int             alive;
+    pthread_t       thread;
+    pthread_mutex_t *left_fork;
+    pthread_mutex_t *right_fork;
+    t_data          *data;
+}   t_philo;
+
+t_data    *ft_init(int ac, char **av);
+void    ft_print_action(t_philo *philo, char *action);
+void    ft_usleep(long time, t_data *data);
+long    ft_get_time();
 void    *philo_routine(void *arg);
-void    monitor();
+void    *ft_monitor(void *arg);
+int ft_stop(t_data *data);
+void    ft_free_all(t_data *data);
 
 #endif

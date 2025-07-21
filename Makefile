@@ -1,4 +1,4 @@
-CC := gcc
+CC := cc
 CFLAGS := -g -Wall -Werror -Wextra -Iincludes
 
 RM := rm -fr

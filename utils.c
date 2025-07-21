@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 12:42:09 by marco             #+#    #+#             */
-/*   Updated: 2025/07/20 17:29:54 by marco            ###   ########.fr       */
+/*   Updated: 2025/07/21 22:12:58 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,29 @@ long    ft_get_time()
 
     gettimeofday(&tv, NULL);
     return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+
+int ft_threads(t_data *data)
+{
+    int i;
+    pthread_t   *threads;
+
+    i = 0;
+    threads = malloc(sizeof(pthread_t) * (data->settings.num_philos + 1));
+    if (!threads)
+        return (FALSE);
+    while (i < data->settings.num_philos)
+    {
+        if (pthread_create(&threads[i], NULL, philo_routine, &data->philos[i]))
+            return (free(threads), FALSE);
+        data->philos_created++;
+        i++;
+    }
+    if (pthread_create(&threads[i], NULL, ft_monitor, data))
+        return (free(threads), FALSE);
+    data->monitor->thread_created++;
+    i = 0;
+    while (i < data->settings.num_philos + 1)
+        pthread_join(threads[i++], NULL);
+    return (ft_destroy_threads(threads, data), TRUE);
 }

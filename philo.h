@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 20:25:59 by marco             #+#    #+#             */
-/*   Updated: 2025/07/20 17:30:20 by marco            ###   ########.fr       */
+/*   Updated: 2025/07/21 22:03:49 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct s_monitor
     int stop;
     pthread_mutex_t stop_mutex;
     int mutex_created;
-    pthread_t   thread;
     int thread_created;
 }   t_monitor;
 
@@ -64,8 +63,6 @@ typedef struct s_philo
     int             id;
     int             meals_eaten;
     long            last_meal_time;
-    int             alive;
-    pthread_t       thread;
     pthread_mutex_t *left_fork;
     pthread_mutex_t *right_fork;
     t_data          *data;
@@ -79,5 +76,7 @@ void    *philo_routine(void *arg);
 void    *ft_monitor(void *arg);
 int ft_stop(t_data *data);
 void    ft_free_all(t_data *data);
+int ft_threads(t_data *data);
+void    ft_destroy_threads(pthread_t *threads, t_data *data);
 
 #endif

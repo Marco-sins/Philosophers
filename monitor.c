@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 13:45:00 by marco             #+#    #+#             */
-/*   Updated: 2025/07/20 17:29:11 by marco            ###   ########.fr       */
+/*   Updated: 2025/07/21 22:13:58 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void    *ft_monitor(void *arg)
     t_data  *data;
 
     data = (t_data *)arg;
+    usleep(1000);
     while (data->monitor->stop)
     {
         if (!ft_is_philo_dead(data))

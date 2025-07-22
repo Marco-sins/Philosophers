@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 21:02:07 by marco             #+#    #+#             */
-/*   Updated: 2025/07/21 22:03:56 by marco            ###   ########.fr       */
+/*   Updated: 2025/07/22 17:10:53 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int  ft_init_philo(t_data *data)
         data->philos[i].last_meal_time = ft_get_time();
         data->philos[i].left_fork = &data->forks[i];
         data->philos[i].data = data;
+        data->philos_created = 0;
         if (i < data->settings.num_philos - 1)
             data->philos[i].right_fork = &data->forks[i + 1];
         else
@@ -65,7 +66,7 @@ static int ft_init_monitor(t_data *data)
         return (FALSE);
     data->monitor->data = data;
     data->monitor->stop = 0;
-    data->monitor->thread_created = 1;
+    data->monitor->thread_created = 0;
     res = pthread_mutex_init(&data->monitor->stop_mutex, NULL);
     if (res != 0)
         return (FALSE);
@@ -89,11 +90,14 @@ t_data    *ft_init(int ac, char **av)
     data->settings.time_to_eat = atoi(av[3]);
     data->settings.time_to_sleep = atoi(av[4]);
     data->philos_created = 0;
+    data->print_mutex_created = 0;
+    data->meal_check_created = 0;
+    data->time = ft_get_time();
     if (ac == 6)
         data->settings.max_meals = atoi(av[5]);
     else
         data->settings.max_meals = -1;
     if (!ft_init_forks(data) || !ft_init_philo(data) || !ft_init_monitor(data))
-        return (printf("EEEEE"), NULL);
+        return (NULL);
     return (data);
 }

@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 20:25:59 by marco             #+#    #+#             */
-/*   Updated: 2025/07/21 22:03:49 by marco            ###   ########.fr       */
+/*   Updated: 2025/07/22 17:04:18 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_data
     pthread_mutex_t meal_check;
     int             meal_check_created;
     int             philo_eaten_max;
+    unsigned long   time;
 }    t_data;
 
 typedef struct s_monitor
@@ -77,6 +78,5 @@ void    *ft_monitor(void *arg);
 int ft_stop(t_data *data);
 void    ft_free_all(t_data *data);
 int ft_threads(t_data *data);
-void    ft_destroy_threads(pthread_t *threads, t_data *data);
 
 #endif

@@ -25,6 +25,7 @@ $(OBJDIR)/%.o: %.c $(HEADERS)
 
 $(NAME): $(OBJS)
 		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+		@echo Making philo
 
 clean:
 		$(RM) $(OBJDIR)

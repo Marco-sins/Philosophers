@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 21:52:15 by marco             #+#    #+#             */
-/*   Updated: 2025/07/23 16:55:12 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:30:26 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,24 @@
 
 static void	ft_think(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->data->print_mutex);
 	ft_print_action(philo, "is thinking", ft_get_time());
-	pthread_mutex_unlock(&philo->data->print_mutex);
 }
 
 static void	ft_sleep(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->data->print_mutex);
 	ft_print_action(philo, "is sleeping", ft_get_time());
-	pthread_mutex_unlock(&philo->data->print_mutex);
 	ft_usleep(philo->data->settings.time_to_sleep, philo->data);
 }
 
 static void	ft_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->data->print_mutex);
-	ft_print_action(philo, "is eating", ft_get_time());
-	pthread_mutex_unlock(&philo->data->print_mutex);
+	long	time;
+
+	time = ft_get_time();
+	ft_print_action(philo, "is eating",  time);
 	pthread_mutex_lock(&philo->data->meal_check);
 	philo->meals_eaten++;
-	philo->last_meal_time = ft_get_time();
+	philo->last_meal_time = time;
 	pthread_mutex_unlock(&philo->data->meal_check);
 	ft_usleep(philo->data->settings.time_to_eat, philo->data);
 }
@@ -48,8 +45,8 @@ static void	ft_take_fork(t_philo *philo)
 		pthread_mutex_lock(philo->right_fork);
 		ft_print_action(philo, "has taken a fork", ft_get_time());
 		ft_eat(philo);
-		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
+		pthread_mutex_unlock(philo->left_fork);
 	}
 	else
 	{
@@ -58,8 +55,8 @@ static void	ft_take_fork(t_philo *philo)
 		pthread_mutex_lock(philo->left_fork);
 		ft_print_action(philo, "has taken a fork", ft_get_time());
 		ft_eat(philo);
-		pthread_mutex_unlock(philo->right_fork);
 		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(philo->right_fork);
 	}
 }
 

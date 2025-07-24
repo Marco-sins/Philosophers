@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 12:42:09 by marco             #+#    #+#             */
-/*   Updated: 2025/07/23 17:25:52 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:02:16 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	ft_print_action(t_philo *philo, char *action, long time)
 {
+	pthread_mutex_lock(&philo->data->print_mutex);
 	if (!ft_stop(philo->data))
 		printf("%lu %d %s\n", time - philo->data->time, philo->id, action);
+	pthread_mutex_unlock(&philo->data->print_mutex);
 }
 
 void	ft_usleep(long time, t_data *data)

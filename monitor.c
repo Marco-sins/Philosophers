@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 13:45:00 by marco             #+#    #+#             */
-/*   Updated: 2025/07/23 16:50:31 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:32:38 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@ int	ft_stop(t_data *data)
 	return (status);
 }
 
+static int	ft_check_philos(t_data *data, int i, int *b)
+{
+	pthread_mutex_lock(&data->meal_check);
+	if (data->philos[i].meals_eaten < data->settings.max_meals)
+		*b = FALSE;
+	if (ft_get_time()
+		- data->philos[i].last_meal_time > data->settings.time_to_die)
+	{
+		pthread_mutex_unlock(&data->meal_check);
+		ft_print_action(&data->philos[i], "died", ft_get_time());
+		return (TRUE);
+	}
+	pthread_mutex_unlock(&data->meal_check);
+	return (FALSE);
+}
+
 static int	ft_is_philo_dead(t_data *data)
 {
 	int	i;
@@ -31,17 +47,8 @@ static int	ft_is_philo_dead(t_data *data)
 	b = TRUE;
 	while (i < data->settings.num_philos)
 	{
-		pthread_mutex_lock(&data->meal_check);
-		if (data->philos[i].meals_eaten < data->settings.max_meals)
-			b = FALSE;
-		if (ft_get_time()
-			- data->philos[i].last_meal_time > data->settings.time_to_die)
-		{
-			ft_print_action(&data->philos[i], "died", ft_get_time());
-			pthread_mutex_unlock(&data->meal_check);
+		if (ft_check_philos(data, i, &b))
 			return (TRUE);
-		}
-		pthread_mutex_unlock(&data->meal_check);
 		i++;
 	}
 	pthread_mutex_lock(&data->monitor->stop_mutex);

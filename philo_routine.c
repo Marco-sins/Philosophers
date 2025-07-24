@@ -28,7 +28,7 @@ static void	ft_eat(t_philo *philo)
 	long	time;
 
 	time = ft_get_time();
-	ft_print_action(philo, "is eating",  time);
+	ft_print_action(philo, "is eating", time);
 	pthread_mutex_lock(&philo->data->meal_check);
 	philo->meals_eaten++;
 	philo->last_meal_time = time;

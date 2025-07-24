@@ -48,7 +48,7 @@ typedef struct s_data
 	int						meal_check_created;
 	int						philo_eaten_max;
 	unsigned long			time;
-    pthread_t	*threads;
+	pthread_t				*threads;
 }							t_data;
 
 typedef struct s_monitor

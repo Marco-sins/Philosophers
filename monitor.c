@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 13:45:00 by marco             #+#    #+#             */
-/*   Updated: 2025/07/24 11:32:38 by marco            ###   ########.fr       */
+/*   Updated: 2025/07/30 19:22:16 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	*ft_monitor(void *arg)
 			pthread_mutex_unlock(&data->monitor->stop_mutex);
 			return (NULL);
 		}
+		ft_usleep(100, data);
 	}
 	return (NULL);
 }

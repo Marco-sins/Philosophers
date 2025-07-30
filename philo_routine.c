@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 21:52:15 by marco             #+#    #+#             */
-/*   Updated: 2025/07/24 11:30:26 by marco            ###   ########.fr       */
+/*   Updated: 2025/07/30 19:25:52 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,20 @@ void	*philo_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		ft_usleep(philo->data->settings.time_to_eat / 2, philo->data);
+		ft_usleep(100, philo->data);
 	while (!ft_stop(philo->data))
 	{
-		ft_think(philo);
 		if (philo->data->settings.num_philos == 1)
 		{
 			pthread_mutex_lock(philo->left_fork);
 			ft_print_action(philo, "has taken a fork", ft_get_time());
 			ft_usleep(philo->data->settings.time_to_die, philo->data);
 			if (!ft_stop(philo->data))
-				return (NULL);
+			return (NULL);
 		}
 		ft_take_fork(philo);
 		ft_sleep(philo);
+		ft_think(philo);
 	}
 	return (NULL);
 }

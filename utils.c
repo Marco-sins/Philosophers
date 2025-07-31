@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/20 12:42:09 by marco             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/07/30 20:32:06 by marco            ###   ########.fr       */
-=======
-/*   Updated: 2025/07/30 19:03:48 by mmembril         ###   ########.fr       */
->>>>>>> 3511a57e033e488bf5ba03ed100212b7cbdd4fb6
+/*   Created: 2025/07/31 11:52:39 by marco             #+#    #+#             */
+/*   Updated: 2025/07/31 11:53:11 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +25,11 @@ void	ft_usleep(long time, t_data *data)
 	long	start;
 
 	start = ft_get_time();
-<<<<<<< HEAD
 	while (((ft_get_time() - start) < time) && !ft_stop(data))
 		usleep(500);
-=======
 	(void)data;
 	while ((ft_get_time() - start) < time)
 		usleep(50);
->>>>>>> 3511a57e033e488bf5ba03ed100212b7cbdd4fb6
 }
 
 long	ft_get_time(void)

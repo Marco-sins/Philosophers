@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 11:52:39 by marco             #+#    #+#             */
-/*   Updated: 2025/07/31 11:53:11 by marco            ###   ########.fr       */
+/*   Updated: 2025/08/01 18:43:32 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	ft_usleep(long time, t_data *data)
 
 	start = ft_get_time();
 	while (((ft_get_time() - start) < time) && !ft_stop(data))
-		usleep(500);
-	(void)data;
-	while ((ft_get_time() - start) < time)
 		usleep(50);
+	/*(void)data;
+	while ((ft_get_time() - start) < time)
+		usleep(50);*/
 }
 
 long	ft_get_time(void)

@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 11:52:30 by marco             #+#    #+#             */
-/*   Updated: 2025/08/01 18:55:18 by marco            ###   ########.fr       */
+/*   Updated: 2025/08/05 16:35:05 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	*philo_routine(void *arg)
 			ft_print_action(philo, "has taken a fork", ft_get_time());
 			ft_usleep(philo->data->settings.time_to_die - 100, philo->data);
 			if (!ft_stop(philo->data))
-			return (NULL);
+				return (pthread_mutex_unlock(philo->left_fork), NULL);
 		}
 		ft_take_fork(philo);
 		ft_sleep(philo);

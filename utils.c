@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 11:52:39 by marco             #+#    #+#             */
-/*   Updated: 2025/08/01 18:43:32 by marco            ###   ########.fr       */
+/*   Updated: 2025/08/06 16:54:57 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ void	ft_usleep(long time, t_data *data)
 	start = ft_get_time();
 	while (((ft_get_time() - start) < time) && !ft_stop(data))
 		usleep(50);
-	/*(void)data;
-	while ((ft_get_time() - start) < time)
-		usleep(50);*/
 }
 
 long	ft_get_time(void)

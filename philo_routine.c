@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 11:52:30 by marco             #+#    #+#             */
-/*   Updated: 2025/08/05 16:35:05 by marco            ###   ########.fr       */
+/*   Updated: 2025/08/06 16:57:34 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_sleep(t_philo *philo)
 
 static void	ft_eat(t_philo *philo)
 {
-	long time;
+	long	time;
 
 	time = ft_get_time();
 	ft_print_action(philo, "is eating", time);
